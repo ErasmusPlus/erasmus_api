@@ -26,8 +26,7 @@
 
 
   while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
-          var_dump($row);
-          echo "<br>";
+      return json_encode($row);
   }
 
   sqlsrv_free_stmt( $stmt);
