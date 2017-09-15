@@ -1,20 +1,9 @@
 <?php
   require "config.php";
 
-  function filter($data) { //Filters data against security risks.
-      if (is_array($data)) {
-          foreach ($data as $key => $element) {
-              $data[$key] = filter($element);
-          }
-      } else {
-          $data = trim(htmlentities(strip_tags($data)));
-          if(get_magic_quotes_gpc()) $data = stripslashes($data);
-          $data = mysql_real_escape_string($data);
-      }
-      return $data;
-  }
+  //TODO: Filter aem parameter
 
-  $aem = filter($_GET['aem']);
+  $aem = $_GET['aem'];
 
   $conn_details = array(
     "Database" => $api['db'],
