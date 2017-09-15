@@ -1,6 +1,21 @@
 <?php
   require "config.php";
 
+  function filter($data) { //Filters data against security risks.
+      if (is_array($data)) {
+          foreach ($data as $key => $element) {
+              $data[$key] = filter($element);
+          }
+      } else {
+          $data = trim(htmlentities(strip_tags($data)));
+          if(get_magic_quotes_gpc()) $data = stripslashes($data);
+          $data = mysql_real_escape_string($data);
+      }
+      return $data;
+  }
+
+  $aem = filter($_GET['aem']);
+
   $conn_details = array(
     "Database" => $api['db'],
     "UID" => $api['UID'],
@@ -13,7 +28,7 @@
        die( print_r( sqlsrv_errors(), true));
   }
 
-  $sql = "SELECT * FROM erasmus_final";
+  $sql = "SELECT * FROM erasmus_final WHERE 'aem' == ".$aem;
 
   $stmt = sqlsrv_query( $conn, $sql, array());
   if( $stmt === false ) {
