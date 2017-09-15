@@ -17,7 +17,7 @@
        die( print_r( sqlsrv_errors(), true));
   }
 
-  $sql = "SELECT * FROM erasmus_final WHERE 'aem' == ".$aem;
+  $sql = "SELECT * FROM erasmus_final WHERE 'aem' = ".$aem;
 
   $stmt = sqlsrv_query( $conn, $sql, array());
   if( $stmt === false ) {
