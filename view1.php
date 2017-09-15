@@ -26,7 +26,7 @@
 
 
   while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
-      die(json_encode($row));
+      exit(json_encode($row));
   }
 
   sqlsrv_free_stmt( $stmt);
