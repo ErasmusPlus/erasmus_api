@@ -1,0 +1,7 @@
+<?php
+	//defined('EAPI') or exit;
+
+  api['database'] = "127.0.0.1";
+  api['table'] = "test";
+  api['UID'] = "test";
+  api['PWD'] = "test";
