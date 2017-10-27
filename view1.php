@@ -4,6 +4,7 @@
   //TODO: Filter aem parameter
 
   $aem = $_GET['aem'];
+  $depID = $_GET['depID'];
 
   $conn_details = array(
     "Database" => $api['db'],
@@ -17,7 +18,7 @@
        die( print_r( sqlsrv_errors(), true));
   }
 
-  $sql = "SELECT * FROM erasmus_final WHERE spec_aem = '$aem'";
+  $sql = "SELECT * FROM erasmus_final WHERE spec_aem = '$aem' AND depID = '$depID'";
 
   $stmt = sqlsrv_query( $conn, $sql, array());
   if( $stmt === false ) {
